@@ -1,0 +1,85 @@
+/* src/components/auth/Auth.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Unbounded:wght@400;700&display=swap');
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Unbounded', sans-serif;
+}
+
+.auth-container {
+  background-image: url('/assets/bg-2.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-box {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px #0ff;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-title {
+  color: #00ffff;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-input {
+  padding: 0.8rem 1rem;
+  background: #111;
+  border: 1px solid #0ff;
+  color: #fff;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.auth-button {
+  padding: 0.8rem 1rem;
+  background: linear-gradient(to right, #0ff, #00f6ff);
+  border: none;
+  border-radius: 0.5rem;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #0ff;
+}
+
+.auth-button:hover {
+  background: linear-gradient(to right, #00f6ff, #0ff);
+  transform: scale(1.05);
+}
+
+.auth-text {
+  margin-top: 1rem;
+  color: #ccc;
+}
+
+.auth-link {
+  color: #00f6ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
