@@ -31,3 +31,8 @@ class CompleteMissionView(APIView):
         serializer.is_valid(raise_exception=True)
         result = serializer.save()
         return Response(result)
+
+class MissionList(APIView):
+    def get(self, request):
+        missions = [{"id": 1, "name": "Mission 1"}, {"id": 2, "name": "Mission 2"}]
+        return Response(missions)
