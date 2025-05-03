@@ -2,7 +2,8 @@ import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
-import MistEffect from './components/effects/MistEffect';
+// import MistEffect from './components/effects/MistEffect';
+import FogEffect from './components/effects/FogEffect';
 import Dashboard from './components/dashboard/Dashboard';
 import Navbar from './components/common/Navbar';
 import Home from './pages/Home';
@@ -13,7 +14,8 @@ const App: React.FC = () => {
 
   return (
     <>
-      <MistEffect /> {/* ✅ Always render MistEffect */}
+      {/* <MistEffect /> */}
+      <FogEffect />
       <Navbar />
       {/* {!isAuthPage && <Navbar />} */}
 

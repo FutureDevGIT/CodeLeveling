@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard-root">
-      <div className="dashboard-overlay" >
+      <div className="dashboard-overlay">
         <div
           className={`dashboard-logo-wrapper fade-in-section ${logoFade.isVisible ? 'is-visible' : ''}`}
           ref={logoFade.ref}

@@ -4,14 +4,14 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: url('/assets/bg-8.jpeg') center/cover no-repeat;
+  background: url('/assets/bg-8.jpg') center/cover no-repeat;
   overflow: visible;
-  z-index: 2;
+  z-index: 1;
 }
 
 .dashboard-overlay {
   position: relative;
-  z-index: 3;
+  z-index: 20;
   text-align: center;
   top: 30%;
   color: white;
