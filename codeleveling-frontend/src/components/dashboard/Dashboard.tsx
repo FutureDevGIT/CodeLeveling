@@ -1,22 +1,31 @@
 import React from 'react';
 import './Dashboard.css';
-import bgImage from '/assets/bg-8.jpeg';
+import Navbar from '../common/Navbar';
+import MistEffect from '../effects/MistEffect';
+import logo from '/assets/codeleveling.png';
+import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
+
 
 const Dashboard: React.FC = () => {
+  const logoFade = useScrollFadeIn();
+
   return (
-    <div
-      className="dashboard-container"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-      }}
-    >
-    <div className="dashboard-container">
-      <div className="dashboard-overlay">
+    <div className="dashboard-root" style={{ position: 'relative', zIndex: 1 }}>
+      <MistEffect />
+      <Navbar />
+
+      <div className="dashboard-overlay" >
+        {/* <div className="dashboard-logo-wrapper"> */}
+        <div
+          className={`dashboard-logo-wrapper fade-in-section ${logoFade.isVisible ? 'is-visible' : ''}`}
+          ref={logoFade.ref}
+        >
+          <img src={logo} alt="CodeLeveling Logo" className="dashboard-logo" />
+        </div>
         <h1 className="dashboard-title">Welcome, Hunter</h1>
         <p className="dashboard-subtitle">Your journey to become the strongest begins now.</p>
         <button className="dashboard-button">Enter the Dungeon</button>
       </div>
-    </div>
     </div>
   );
 };

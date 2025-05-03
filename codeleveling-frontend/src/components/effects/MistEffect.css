@@ -1,0 +1,25 @@
+.mist-effect {
+    position: fixed;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.07) 0%, transparent 70%),
+                radial-gradient(circle, rgba(245, 72, 254, 0.05) 0%, transparent 70%);
+    background-repeat: no-repeat;
+    background-position: 50% 50%, 30% 30%;
+    filter: blur(100px);
+    animation: drift 60s linear infinite;
+    opacity: 0.5;
+  }
+
+  @keyframes drift {
+    0% {
+      transform: rotate(0deg) translate(0, 0);
+    }
+    100% {
+      transform: rotate(360deg) translate(10px, 10px);
+    }
+  }
