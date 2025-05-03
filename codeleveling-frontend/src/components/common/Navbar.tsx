@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
-import MistEffect from '../effects/MistEffect';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +9,6 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-    <MistEffect />
       <div className="mist-layer"></div>
 
       <div className="navbar-container">

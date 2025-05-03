@@ -5,23 +5,17 @@
   width: 100vw;
   height: 100vh;
   background: url('/assets/bg-8.jpeg') center/cover no-repeat;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 2;
 }
 
 .dashboard-overlay {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
   top: 30%;
   color: white;
 }
-
-/* .dashboard-logo-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  animation: pulseGlow 4s ease-in-out infinite;
-} */
 
 .dashboard-logo {
   width: 120px;

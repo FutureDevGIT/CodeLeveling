@@ -1,7 +1,5 @@
 import React from 'react';
 import './Dashboard.css';
-import Navbar from '../common/Navbar';
-import MistEffect from '../effects/MistEffect';
 import logo from '/assets/codeleveling.png';
 import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
 
@@ -10,12 +8,8 @@ const Dashboard: React.FC = () => {
   const logoFade = useScrollFadeIn();
 
   return (
-    <div className="dashboard-root" style={{ position: 'relative', zIndex: 1 }}>
-      <MistEffect />
-      <Navbar />
-
+    <div className="dashboard-root">
       <div className="dashboard-overlay" >
-        {/* <div className="dashboard-logo-wrapper"> */}
         <div
           className={`dashboard-logo-wrapper fade-in-section ${logoFade.isVisible ? 'is-visible' : ''}`}
           ref={logoFade.ref}
