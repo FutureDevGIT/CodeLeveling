@@ -1,17 +1,5 @@
-/* Root level variables for colors and gradients */
-:root {
-    --skill-bg: #111824;
-    --skill-border: #00ffff55;
-    --skill-shadow: 0 0 12px #00ffff33;
-    --skill-hover-shadow: 0 0 20px #00ffffaa;
-    --skill-unlocked-bg: linear-gradient(145deg, #0ff, #00bcd4);
-    --mana-line-gradient: linear-gradient(90deg, #00ffffaa, #0077ff88);
-    --mana-line-pulse-shadow: 0 0 10px #00ffff88;
-    --mana-line-pulse-active-shadow: 0 0 20px #00ffffcc;
-  }
-
-  /* Container */
-  .skilltree-container {
+/* Container */
+.skilltree-container {
     position: relative;
     height: 100vh;
     width: 100%;
@@ -21,35 +9,55 @@
     font-family: 'Orbitron', sans-serif;
   }
 
-  /* Animated mana line between nodes */
-  .mana-line {
-    position: absolute;
-    pointer-events: none;
-  }
-
-  .mana-line::before {
-    content: '';
-    position: absolute;
-    background: var(--mana-line-gradient);
-    width: 4px;
-    transform-origin: top left;
-    animation: pulse-line 2s infinite;
-    box-shadow: var(--mana-line-pulse-shadow);
+.skilltree-overlay {
+    position: fixed; /* Use fixed to center relative to viewport */
     top: 0;
     left: 0;
-    height: calc((var(--to-top, 0%) - var(--from-top, 0%)) * 1vh);
-    transform: translateX(-50%) rotate(
-      calc(atan2(
-        (var(--to-top, 0%) - var(--from-top, 0%)),
-        (var(--to-left, 0%) - var(--from-left, 0%))
-      ) * 1rad)
-    );
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+  /* Skill Tree Modal */
+  .skilltree-modal {
+    position: relative; /* NOT absolute */
+    width: 90%;
+    max-width: 1200px;
+    background-color: rgba(10, 10, 30, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    overflow-y: auto;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  .skilltree-title {
+    color: #00ffff;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+  /* Flex layout for skill nodes */
+  .skilltree-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    align-items: center;
+    margin-top: 2rem;
+    width: 100%;
   }
 
   /* Skill node */
   .skill-node {
-    position: absolute;
-    transform: translate(-50%, -50%);
+    position: relative;
     background: var(--skill-bg);
     border: 2px solid var(--skill-border);
     border-radius: 12px;
@@ -63,7 +71,7 @@
 
   .skill-node:hover {
     box-shadow: var(--skill-hover-shadow);
-    transform: scale(1.1) translate(-50%, -50%);
+    transform: scale(1.1);
   }
 
   .skill-node img {
@@ -88,4 +96,29 @@
       opacity: 1;
       box-shadow: var(--mana-line-pulse-active-shadow);
     }
+  }
+
+  /* Mana line between nodes */
+  .mana-line {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .mana-line::before {
+    content: '';
+    position: absolute;
+    background: var(--mana-line-gradient);
+    width: 4px;
+    transform-origin: top left;
+    animation: pulse-line 2s infinite;
+    box-shadow: var(--mana-line-pulse-shadow);
+    top: 0;
+    left: 0;
+    height: calc((var(--to-top, 0%) - var(--from-top, 0%)) * 1vh);
+    transform: translateX(-50%) rotate(
+      calc(atan2(
+        (var(--to-top, 0%) - var(--from-top, 0%)),
+        (var(--to-left, 0%) - var(--from-left, 0%))
+      ) * 1rad)
+    );
   }
