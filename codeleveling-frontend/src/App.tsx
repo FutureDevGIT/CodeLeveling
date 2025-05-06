@@ -2,10 +2,10 @@ import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
-// import MistEffect from './components/effects/MistEffect';
 import FogEffect from './components/effects/FogEffect';
 import Dashboard from './components/dashboard/Dashboard';
 import Navbar from './components/common/Navbar';
+import Profile from './pages/Profile';
 import Home from './pages/Home';
 
 const App: React.FC = () => {
@@ -25,6 +25,7 @@ const App: React.FC = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
 .dashboard-root {
-  position: relative;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background: url('/assets/bg-8.jpg') center/cover no-repeat;
@@ -13,7 +21,7 @@
   position: relative;
   z-index: 20;
   text-align: center;
-  top: 30%;
+  top: 20%;
   color: white;
 }
 

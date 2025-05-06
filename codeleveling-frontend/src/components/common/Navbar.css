@@ -6,7 +6,8 @@
   left: 0;
   width: 100%;
   z-index: 1;
-  background: radial-gradient(circle, rgba(245,72,254,0.15) 0%, transparent 80%);
+  /* background: radial-gradient(circle, rgba(245,72,254,0.15) 0%, transparent 80%); */
+  background: radial-gradient(circle, rgb(93, 27, 215) 0%, transparent 80%);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid #090979;
   font-family: 'Orbitron', sans-serif;

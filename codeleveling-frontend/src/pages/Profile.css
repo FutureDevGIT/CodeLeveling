@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Orbitron:wght@500&display=swap');
+
+.profile-container {
+  padding: 2rem;
+  font-family: 'Cinzel', serif;
+  background: radial-gradient(circle at top, #0a0f1c 0%, #060a10 100%);
+  color: #e0f7fa;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.avatar-glow-ring {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,255,0.4), rgba(0,0,0,0.2));
+  box-shadow: 0 0 30px #00ffff88, 0 0 10px #00bcd4 inset;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 30px #00ffff88, 0 0 10px #00bcd4 inset;
+  }
+  50% {
+    box-shadow: 0 0 45px #00ffffaa, 0 0 20px #00bcd4 inset;
+  }
+}
+
+.profile-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  display: block;
+  border: 3px solid #00e6e6;
+  box-shadow: 0 0 12px #00ffff;
+}
+
+.profile-username {
+  font-size: 2.2rem;
+  margin-top: 1rem;
+  color: #00e6e6;
+  text-shadow: 0 0 10px #00ffff88;
+}
+
+.profile-rank {
+  font-size: 1.2rem;
+  color: #80deea;
+  text-shadow: 0 0 8px #00bcd4;
+}
+
+.xp-bar {
+  margin: 2rem auto;
+  width: 80%;
+  height: 26px;
+  background-color: #1c1c2b;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 0 15px #00e0ff;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  background: linear-gradient(to right, #00bcd4, #2196f3);
+  box-shadow: 0 0 25px #00ffff99;
+  transition: width 0.5s ease;
+}
+
+.xp-text {
+  position: absolute;
+  width: 100%;
+  top: 2px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #ffffffdd;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stat-box {
+  background: linear-gradient(145deg, #101828, #0d1520);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  box-shadow: inset 0 0 10px #00ffff33, 0 0 15px #00bcd455;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #00bcd4;
+}
+
+.stat-box span {
+  float: right;
+  font-weight: bold;
+  color: #00ffff;
+}
+
+.inventory-section {
+  margin-top: 3rem;
+}
+
+.inventory-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00e6e6;
+}
+
+.inventory-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.inventory-item {
+  background: #0c101a;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 110px;
+  box-shadow: 0 0 12px #00ffff44, 0 0 8px #008b8b22 inset;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inventory-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ffff88;
+}
+
+.inventory-item img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 5px #00ffffaa);
+}
+
+.inventory-item span {
+  display: block;
+  font-size: 0.9rem;
+  color: #aefbff;
+}
+
+.system-button {
+  background: radial-gradient(circle, #0ff, #08f);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  color: black;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00ffffaa;
+  cursor: pointer;
+  margin: 1rem auto;
+  display: block;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.system-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ffff;
+}
+
+.skilltree-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 10, 20, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(6px);
+}
+
+.skilltree-modal {
+  background: #0e141f;
+  border: 2px solid #00ffff88;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 0 30px #00ffff55;
+  text-align: center;
+}
+
+.skilltree-title {
+  color: #00ffff;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.skilltree-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.skill-node {
+  background: #0b0f1a;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Orbitron';
+  color: white;
+  border: 2px solid #00ffff44;
+  transition: all 0.3s ease;
+}
+
+.skill-node.unlocked {
+  background: radial-gradient(#0fffee33, #0b0f1a);
+}
+
+.skill-tooltip {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  padding: 1rem;
+  background: #101822;
+  border: 1px solid #00ffff88;
+  border-radius: 10px;
+  color: #e0f7fa;
+  font-size: 0.9rem;
+  box-shadow: 0 0 12px #00ffff55;
+  z-index: 1001;
+  animation: fadeIn 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) scale(0.95); }
+  to { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+.skilltree-connector {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, #00ffffcc, #008b8bcc);
+  animation: mana-flow 2s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes mana-flow {
+  0% {
+    box-shadow: 0 0 6px #00ffff88;
+    background-position: 0% 0%;
+  }
+  50% {
+    box-shadow: 0 0 12px #00ffff;
+    background-position: 0% 100%;
+  }
+  100% {
+    box-shadow: 0 0 6px #00ffff88;
+    background-position: 0% 0%;
+  }
+}
+
+.skill-node-wrapper {
+  position: relative;
+}
