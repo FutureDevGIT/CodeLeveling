@@ -10,6 +10,7 @@ interface Skill {
   maxLevel?: number;
   unlocked: boolean;
   prerequisites?: string[];
+  category?: string;
 }
 
 interface SkillTreeProps {
@@ -20,59 +21,104 @@ interface SkillTreeProps {
 }
 
 const SkillTree: React.FC<SkillTreeProps> = ({
-    skills,
-    hoveredSkill,
-    setHoveredSkill,
-    onClose
-  }) => {
-    const SkillNode = ({ skill }: { skill: Skill }) => {
-      return (
-        <motion.div
-          className={`skill-node ${skill.unlocked ? 'unlocked' : 'locked'}`}
-          initial={{ scale: 0.8, opacity: 0.5 }}
-          animate={{
-            scale: skill.unlocked ? 1.15 : 0.9,
-            opacity: skill.unlocked ? 1 : 0.5,
-            boxShadow: skill.unlocked ? '0 0 15px #00ffffaa' : 'none'
-          }}
-          transition={{ duration: 0.5, type: 'spring' }}
-          onMouseEnter={() => setHoveredSkill(skill)}
-          onMouseLeave={() => setHoveredSkill(null)}
-          style={{
-            // You can add specific positioning here if required
-          }}
-        >
-          <span className="skill-icon">{skill.icon}</span>
-          <span className="skill-name">{skill.name}</span>
-        </motion.div>
-      );
-    };
+  skills,
+  hoveredSkill,
+  onClose
+}) => {
+  const [hoveredSkillId, setHoveredSkillId] = React.useState<string | null>(null);
 
+  // Group skills by category for better organization
+  const skillCategories = skills.reduce((acc, skill) => {
+    const category = skill.category || 'General';
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(skill);
+    return acc;
+  }, {} as Record<string, Skill[]>);
+
+  const SkillNode = ({ skill }: { skill: Skill }) => {
     return (
-      <div className="skilltree-overlay" onClick={onClose}>
-        <motion.div
-          className="skilltree-modal"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-          transition={{ duration: 0.4 }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <h3 className="skilltree-title">🌀 Skill Tree</h3>
-          <div className="skilltree-grid">
-            {skills.map((skill, index) => (
-              <SkillNode key={index} skill={skill} />
-            ))}
-          </div>
-          {hoveredSkill && (
-            <div className="skill-tooltip">
-              <strong>{hoveredSkill.name}</strong>
-              <p>{hoveredSkill.description}</p>
-            </div>
+      <motion.div
+        className={`skill-node ${skill.unlocked ? 'unlocked' : 'locked'}`}
+        onMouseEnter={() => setHoveredSkillId(skill.id)}
+        onMouseLeave={() => setHoveredSkillId(null)}
+      >
+        <div className="skill-icon-wrapper">
+          {skill.icon ? (
+            <img src={skill.icon} alt={skill.name} className="skill-icon" />
+          ) : (
+            <div className="skill-icon-placeholder">{skill.name.charAt(0)}</div>
           )}
-        </motion.div>
-      </div>
+        </div>
+        <span className="skill-name">{skill.name}</span>
+        {skill.level && (
+          <div className="skill-level">
+            <div
+              className="level-bar"
+              style={{ width: `${(skill.level / (skill.maxLevel || 5)) * 100}%` }}
+            ></div>
+            <span>Lv. {skill.level}</span>
+          </div>
+        )}
+      </motion.div>
     );
   };
+
+  return (
+    <div className="skilltree-overlay" onClick={onClose}>
+      <motion.div
+        className="skilltree-modal"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.4 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="skilltree-header">
+          <h3 className="skilltree-title">SHADOW MONARCH SKILL TREE</h3>
+          <button className="close-button" onClick={onClose}>
+            ✕
+          </button>
+        </div>
+
+        <div className="skilltree-content">
+          {Object.entries(skillCategories).map(([category, categorySkills]) => (
+            <div key={category} className="skill-category">
+              <h4 className="category-title">{category.toUpperCase()}</h4>
+              <div className="skilltree-grid">
+                {categorySkills.map((skill) => (
+                  <SkillNode key={skill.id} skill={skill} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {hoveredSkill && (
+          <div className="skill-tooltip">
+            <div className="tooltip-header">
+              <strong>{hoveredSkill.name}</strong>
+              {hoveredSkill.level && (
+                <span className="tooltip-level">Lv. {hoveredSkill.level}/{hoveredSkill.maxLevel}</span>
+              )}
+            </div>
+            <p className="tooltip-description">{hoveredSkill.description}</p>
+            {hoveredSkill.prerequisites && hoveredSkill.prerequisites.length > 0 && (
+              <div className="tooltip-prerequisites">
+                <span>Requires:</span>
+                <ul>
+                  {hoveredSkill.prerequisites.map((prereq) => (
+                    <li key={prereq}>{prereq}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </motion.div>
+    </div>
+  );
+};
 
 export default SkillTree;
