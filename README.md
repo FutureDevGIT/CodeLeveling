@@ -2,7 +2,9 @@
 
 **CodeLeveling** is an immersive, gamified web platform inspired by *Solo Leveling*. Designed for aspiring and intermediate developers, it transforms programming education into an epic quest with daily missions, XP, skill trees, level-ups, and dynamic mentorship—just like becoming a top-ranked Hunter.
 
-![CodeLeveling Banner](./assets/banner.png) <!-- Optional image -->
+<p align="center">
+  <img src="codeleveling-frontend/public/assets/sl-banner.webp" alt="CodeLeveling Banner" width="100%" />
+</p>
 
 ---
 
@@ -49,16 +51,17 @@ npm run dev
 ```
 
 ### 📁 Project Structure
+```bash
 CodeLeveling/
+├── apps/                     # Modular app structure (missions, auth, etc.)
 ├── codeleveling_backend/     # Django backend with REST APIs
-│   ├── apps/                 # Modular app structure (missions, auth, etc.)
 │   └── ...
 ├── codeleveling-frontend/    # React frontend with Sandpack editor
 │   ├── components/
 │   ├── pages/
 │   └── ...
 └── README.md
-
+```
 ### 🔮 Planned Features
 - AI-based mission generation based on user skill
 - Real-time multiplayer coding duels
