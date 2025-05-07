@@ -2,7 +2,9 @@
 
 **CodeLeveling** is an immersive, gamified web platform inspired by *Solo Leveling*. Designed for aspiring and intermediate developers, it transforms programming education into an epic quest with daily missions, XP, skill trees, level-ups, and dynamic mentorship—just like becoming a top-ranked Hunter.
 
-![CodeLeveling Banner](./assets/banner.png) <!-- Optional image -->
+<p align="center">
+  <img src="codeleveling-frontend/public/assets/sl-banner.webp" alt="CodeLeveling Banner" width="100%" />
+</p>
 
 ---
 
