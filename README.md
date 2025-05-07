@@ -51,16 +51,17 @@ npm run dev
 ```
 
 ### 📁 Project Structure
+```bash
 CodeLeveling/
+├── apps/                     # Modular app structure (missions, auth, etc.)
 ├── codeleveling_backend/     # Django backend with REST APIs
-│   ├── apps/                 # Modular app structure (missions, auth, etc.)
 │   └── ...
 ├── codeleveling-frontend/    # React frontend with Sandpack editor
 │   ├── components/
 │   ├── pages/
 │   └── ...
 └── README.md
-
+```
 ### 🔮 Planned Features
 - AI-based mission generation based on user skill
 - Real-time multiplayer coding duels
