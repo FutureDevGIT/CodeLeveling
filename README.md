@@ -1,4 +1,4 @@
-# 🧠 CodeLeveling: Gamified Learning Platform for Programmers
+# 👑 CodeLeveling: Gamified Learning Platform for Programmers
 
 **CodeLeveling** is an immersive, gamified web platform inspired by *Solo Leveling*. Designed for aspiring and intermediate developers, it transforms programming education into an epic quest with daily missions, XP, skill trees, level-ups, and dynamic mentorship—just like becoming a top-ranked Hunter.
 
@@ -48,7 +48,7 @@ npm install
 npm run dev
 ```
 
-## 📁 Project Structure
+### 📁 Project Structure
 CodeLeveling/
 ├── codeleveling_backend/     # Django backend with REST APIs
 │   ├── apps/                 # Modular app structure (missions, auth, etc.)
@@ -61,11 +61,34 @@ CodeLeveling/
 
 ### 🔮 Planned Features
 - AI-based mission generation based on user skill
-
 - Real-time multiplayer coding duels
-
 -  Dynamic leaderboard & guilds
-
 - Integration with GitHub for real-world task simulations
-
 - Mobile app version (React Native)
+
+### 🤝 Contributing
+1. Fork the repo
+2. Create a feature branch (git checkout -b feature/your-feature)
+3. Commit your changes (git commit -m "Add something cool")
+4. Push to the branch (git push origin feature/your-feature)
+5. Open a Pull Request
+
+### 📜 License
+> This project is under the MIT License.
+
+### 👑 Inspired By
+- [Solo Leveling (Manhwa)](https://en.wikipedia.org/wiki/Solo_Leveling)
+- RPG progression mechanics
+- Code learning platforms like LeetCode, Codewars, and Codecademy
+
+### 📫 Contact
+
+Created by [@FutureDevGIT](https://github.com/FutureDevGIT).  
+For collaboration or mentorship integration ideas, feel free to reach out via GitHub or open an issue.
+
+---
+
+## 👾 ARISE
+
+> *"The moment I accepted the quest to grow stronger, my leveling began."*  
+> — *CodeLeveling: Awaken Your Inner Developer*
