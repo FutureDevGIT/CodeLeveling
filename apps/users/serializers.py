@@ -1,23 +1,35 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import UserProfile
-from apps.missions.models import UserMission, Mission
-from apps.missions.serializers import MissionSerializer
+from apps.users.models import UserProfile
 
-class UserSerializer(serializers.ModelSerializer):
+class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = ('username', 'email', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        return user
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-    completed_missions = serializers.SerializerMethodField()
+    username = serializers.CharField(source='user.username')
+    email = serializers.EmailField(source='user.email')
 
     class Meta:
         model = UserProfile
-        fields = ('user', 'level', 'xp', 'rank', 'streak', 'last_active', 'completed_missions')
-
-    def get_completed_missions(self, obj):
-        completed = UserMission.objects.filter(user=obj.user).select_related('mission')
-        return MissionSerializer([cm.mission for cm in completed], many=True).data
-
+        fields = [
+            'username',
+            'email',
+            'level',
+            'xp',
+            'rank',
+            'streak',
+            'last_active',
+            'last_mission_check',
+            'weekly_xp'
+        ]

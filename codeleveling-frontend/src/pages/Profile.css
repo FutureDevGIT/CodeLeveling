@@ -11,8 +11,18 @@
 }
 
 .profile-header {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
   margin-bottom: 2rem;
+  text-align: left;
+}
+
+.profile-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .avatar-glow-ring {
@@ -80,6 +90,61 @@
   text-align: center;
   font-size: 0.85rem;
   color: #ffffffdd;
+}
+
+.profile-metrics {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(25, 25, 35, 0.9), rgba(10, 10, 20, 0.9));
+  border: 1px solid rgba(97, 125, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(80, 120, 255, 0.4), 0 0 40px rgba(130, 80, 255, 0.2) inset;
+  color: #dfe8ff;
+  font-family: 'Cinzel', 'serif';
+  text-shadow: 0 0 3px rgba(97, 125, 255, 0.7);
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-metrics p {
+  margin: 0.6rem 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.profile-metrics strong {
+  color: #8fcfff;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(111, 179, 255, 0.9);
+}
+
+.profile-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-evenly;
+  margin-top: 1.5rem;
+}
+
+.profile-stat {
+  background: rgba(45, 45, 65, 0.8);
+  padding: 1rem;
+  border-radius: 8px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(60, 120, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-stat:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(80, 160, 255, 0.6);
+}
+
+.profile-stat span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8fcfff;
+  text-shadow: 0 0 5px rgba(111, 179, 255, 0.8);
 }
 
 .stats-grid {
@@ -281,4 +346,20 @@
 
 .skill-node-wrapper {
   position: relative;
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(97, 125, 255, 0.3), 0 0 30px rgba(130, 80, 255, 0.1) inset;
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(97, 125, 255, 0.6), 0 0 50px rgba(130, 80, 255, 0.2) inset;
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(97, 125, 255, 0.3), 0 0 30px rgba(130, 80, 255, 0.1) inset;
+  }
+}
+
+.profile-metrics {
+  animation: glow-pulse 4s infinite ease-in-out;
 }

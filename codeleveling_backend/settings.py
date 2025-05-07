@@ -11,7 +11,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -23,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'apps.users',
+    'apps.userauth',
     'apps.missions',
     'apps.elite',
     'apps.inventory',
@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'apps.achievements',
     'apps.notifications',
 ]
+
+INSTALLED_APPS += ['rest_framework', 'rest_framework_simplejwt.token_blacklist']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
