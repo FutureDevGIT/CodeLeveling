@@ -76,9 +76,20 @@
 }
 
 .skilltree-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.skill-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .skill-category {
@@ -134,6 +145,66 @@
   filter: brightness(1);
   box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
 }
+
+/* Glow Animation */
+@keyframes unlock-glow {
+  0%   { box-shadow: 0 0 5px #00ffff44; }
+  50%  { box-shadow: 0 0 20px #00ffffaa; }
+  100% { box-shadow: 0 0 5px #00ffff44; }
+}
+
+.animate-glow {
+  animation: unlock-glow 2s ease-in-out infinite;
+}
+
+/* Progress Bar (Level Display) */
+.skill-progress-bar {
+  margin-top: 0.4rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  width: 100%;
+  height: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #00ffff, #7b2dff);
+  transition: width 0.4s ease-in-out;
+  border-radius: 5px 0 0 5px;
+}
+
+.progress-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 4px;
+  text-align: center;
+  display: block;
+}
+
+.skill-xp {
+  width: 100%;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.xp-bar {
+  height: 6px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-bottom: 0.3rem;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #7b2dff);
+  transition: width 0.4s ease;
+}
+
 
 /* ===== HOVER ISOLATION (CRITICAL) ===== */
 .skill-node:hover {
@@ -310,3 +381,4 @@
     font-size: 0.8rem;
   }
 }
+

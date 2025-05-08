@@ -6,8 +6,10 @@ interface Skill {
   name: string;
   icon?: string;
   description: string;
-  level?: number;
-  maxLevel?: number;
+  level: number;
+  maxLevel: number;
+  currentXP: number;
+  xpToNextLevel: number;
   unlocked: boolean;
   prerequisites?: string[];
   category?: string;
@@ -18,16 +20,19 @@ interface SkillTreeProps {
   hoveredSkill: Skill | null;
   setHoveredSkill: (skill: Skill | null) => void;
   onClose: () => void;
+  setSkills?: (updated: Skill[]) => void; // Optional for external updates
 }
 
 const SkillTree: React.FC<SkillTreeProps> = ({
   skills,
   hoveredSkill,
-  onClose
+  setHoveredSkill,
+  onClose,
+  setSkills
 }) => {
   const [hoveredSkillId, setHoveredSkillId] = React.useState<string | null>(null);
 
-  // Group skills by category for better organization
+  // Group skills by category
   const skillCategories = skills.reduce((acc, skill) => {
     const category = skill.category || 'General';
     if (!acc[category]) {
@@ -37,12 +42,48 @@ const SkillTree: React.FC<SkillTreeProps> = ({
     return acc;
   }, {} as Record<string, Skill[]>);
 
+  const gainXP = (skillId: string, amount: number) => {
+    const updatedSkills = skills.map(skill => {
+      if (skill.id !== skillId || !skill.unlocked || skill.level >= skill.maxLevel) return skill;
+
+      let newXP = skill.currentXP + amount;
+      let newLevel = skill.level;
+      let xpNeeded = skill.xpToNextLevel;
+
+      while (newXP >= xpNeeded && newLevel < skill.maxLevel) {
+        newXP -= xpNeeded;
+        newLevel += 1;
+        xpNeeded = 100 + 50 * newLevel; // Optional scaling
+      }
+
+      return {
+        ...skill,
+        level: newLevel,
+        currentXP: newXP,
+        xpToNextLevel: xpNeeded
+      };
+    });
+
+    if (setSkills) {
+      setSkills(updatedSkills);
+    }
+
+    console.log('XP gained, updated skills:', updatedSkills);
+  };
+
   const SkillNode = ({ skill }: { skill: Skill }) => {
     return (
       <motion.div
         className={`skill-node ${skill.unlocked ? 'unlocked' : 'locked'}`}
-        onMouseEnter={() => setHoveredSkillId(skill.id)}
-        onMouseLeave={() => setHoveredSkillId(null)}
+        onMouseEnter={() => {
+          setHoveredSkillId(skill.id);
+          setHoveredSkill(skill);
+        }}
+        onMouseLeave={() => {
+          setHoveredSkillId(null);
+          setHoveredSkill(null);
+        }}
+        onClick={() => gainXP(skill.id, 30)} // Example: Gain 30 XP on click
       >
         <div className="skill-icon-wrapper">
           {skill.icon ? (
@@ -52,13 +93,23 @@ const SkillTree: React.FC<SkillTreeProps> = ({
           )}
         </div>
         <span className="skill-name">{skill.name}</span>
-        {skill.level && (
-          <div className="skill-level">
-            <div
-              className="level-bar"
-              style={{ width: `${(skill.level / (skill.maxLevel || 5)) * 100}%` }}
-            ></div>
-            <span>Lv. {skill.level}</span>
+
+        <div className="skill-level">
+          <div className="level-bar" style={{ width: `${(skill.level / skill.maxLevel) * 100}%` }}></div>
+          <span>Lv. {skill.level}</span>
+        </div>
+
+        {skill.level < skill.maxLevel && (
+          <div className="skill-xp">
+            <div className="xp-bar">
+              <div
+                className="xp-fill"
+                style={{
+                  width: `${(skill.currentXP / skill.xpToNextLevel) * 100}%`
+                }}
+              />
+            </div>
+            <span className="xp-label">{skill.currentXP} / {skill.xpToNextLevel}</span>
           </div>
         )}
       </motion.div>
@@ -100,7 +151,9 @@ const SkillTree: React.FC<SkillTreeProps> = ({
             <div className="tooltip-header">
               <strong>{hoveredSkill.name}</strong>
               {hoveredSkill.level && (
-                <span className="tooltip-level">Lv. {hoveredSkill.level}/{hoveredSkill.maxLevel}</span>
+                <span className="tooltip-level">
+                  Lv. {hoveredSkill.level}/{hoveredSkill.maxLevel}
+                </span>
               )}
             </div>
             <p className="tooltip-description">{hoveredSkill.description}</p>
