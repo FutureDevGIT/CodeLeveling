@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import SoloLoader from '../../components/common/SoloLoader';
 
-const AuthRedirect = () => {
+const AuthRedirect: React.FC = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isLoading } = useAuth();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/profile');
-    } else {
-      navigate('/login');
+    if (!isLoading) {
+      navigate(isLoggedIn ? '/profile' : '/login');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, isLoading, navigate]);
+
+  if (isLoading) return <SoloLoader />;
 
   return null;
 };

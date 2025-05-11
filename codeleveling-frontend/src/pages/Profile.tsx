@@ -1,9 +1,12 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Profile.css';
 import avatar from '/assets/hunter-avatar.png';
 import SkillTree from './SkillTree';
 import './SkillTree.css';
+import './Profile.css';
+import SoloLoader from '../components/common/SoloLoader';
+import { getAccessToken } from '../utils/auth';
+import { authFetch } from '../utils/authFetch';
 
 // Skill Interface
 interface Skill {
@@ -43,6 +46,7 @@ interface User {
 const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [showSkillTree, setShowSkillTree] = useState(false);
   const [hoveredSkill, setHoveredSkill] = useState<Skill | null>(null);
 
@@ -64,23 +68,14 @@ const ProfilePage: React.FC = () => {
     ["Canva", "Canva"]
   ], []);
 
-  const handleSkillTreeToggle = () => {
-    setShowSkillTree((prev) => !prev);
-  };
+  const handleSkillTreeToggle = () => setShowSkillTree(prev => !prev);
 
   // Fetch user info
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) return navigate('/login');
-
-    fetch('http://localhost:8000/api/auth/me/', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    authFetch('http://localhost:8000/api/auth/me/')
       .then(async (res) => {
         if (!res.ok) throw new Error('Unauthorized');
-        return res.json();
-      })
-      .then(data => {
+        const data = await res.json();
         setUser({
           username: data.username,
           email: data.email,
@@ -95,6 +90,8 @@ const ProfilePage: React.FC = () => {
       })
       .catch(() => navigate('/login'));
   }, [navigate]);
+
+  if (loading) return <SoloLoader />;
 
   if (!user) return <div className="profile-container"><div className="auth-box">Loading...</div></div>;
 

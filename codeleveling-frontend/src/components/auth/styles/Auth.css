@@ -84,3 +84,14 @@ body, html, #root {
 .auth-link:hover {
   text-decoration: underline;
 }
+
+.error-text {
+  color: red;
+  font-weight: bold;
+  background: linear-gradient(to right, #00f6ff, #0ff);
+  box-shadow: 0 0 10px #0ff;
+  transform: scale(1.05);
+  border-radius: 0.5rem;
+  padding: 1rem 1rem;
+  backdrop-filter: blur(10px);
+}

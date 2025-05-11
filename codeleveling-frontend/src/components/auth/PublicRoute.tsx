@@ -1,17 +1,19 @@
-import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../context/useAuth';
-import Loader from '../common/SoloLoader';
+import { useAuth } from '../../context/AuthContext';
+import SoloLoader from '../../components/common/SoloLoader';
 
 interface PublicRouteProps {
   children: JSX.Element;
 }
 
 const PublicRoute: React.FC<PublicRouteProps> = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
+  const { isLoggedIn, isLoading } = useAuth();
 
-  if (loading) return <Loader />;
-  return isAuthenticated ? <Navigate to="/dashboard" replace /> : children;
+  if (isLoading) {
+    return <div><SoloLoader /></div>;
+  }
+
+  return !isLoggedIn ? children : <Navigate to="/profile" />;
 };
 
 export default PublicRoute;
