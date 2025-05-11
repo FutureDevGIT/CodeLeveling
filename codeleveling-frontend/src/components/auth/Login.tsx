@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/Auth.css';
+import { setTokens } from '../../utils/auth';
 
 const Login = () => {
-
   const [form, setForm] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
@@ -19,8 +19,7 @@ const Login = () => {
     const data = await res.json();
 
     if (res.ok && data.access) {
-      localStorage.setItem('accessToken', data.access);
-      localStorage.setItem('refreshToken', data.refresh);
+      setTokens(data.access, data.refresh);
       navigate('/profile');
     } else {
       alert(data.detail || 'Login failed. Check credentials.');

@@ -1,0 +1,105 @@
+/* Fullscreen Background Overlay */
+.loader-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 20, 0.95); /* semi-transparent dark */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Loader Container */
+.solo-loader {
+  width: 320px;
+  padding: 20px;
+  background: #0a0a12;
+  border: 2px solid #00f7ff;
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.4);
+  font-family: 'Courier New', monospace;
+  color: #00f7ff;
+  text-align: center;
+  animation: border-glow 2s infinite;
+  position: relative;
+}
+
+/* Border Animation */
+@keyframes border-glow {
+  0%, 100% { border-color: #00f7ff; }
+  50% { border-color: #0066ff; }
+}
+
+/* Progress Bar Container */
+.progress-bar {
+  height: 20px;
+  background: #1a1a2a;
+  border: 1px solid #00f7ff;
+  margin: 15px 0;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Progress Fill */
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0064ff, #00f7ff);
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+/* Rune-Like Particle Effect */
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  width: 10px;
+  height: 30px;
+  background: rgba(0, 247, 255, 0.6);
+  filter: blur(3px);
+}
+
+/* Typing Effect Line */
+.system-text {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #00f7ff;
+  font-size: 14px;
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  animation: typing 3s steps(20, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00f7ff }
+}
+
+/* Sweeping Highlight Overlay */
+.solo-loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.08), transparent);
+  animation: shadow-swipe 2.5s infinite;
+}
+
+@keyframes shadow-swipe {
+  0% { left: -50% }
+  100% { left: 150% }
+}
