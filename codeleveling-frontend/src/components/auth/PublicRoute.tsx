@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import SoloLoader from '../../components/common/SoloLoader';
+import { JSX } from 'react';
 
 interface PublicRouteProps {
   children: JSX.Element;

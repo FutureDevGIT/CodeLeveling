@@ -20,6 +20,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+INSTALLED_APPS += [
     'corsheaders',
     'apps.users',
     'apps.userauth',
@@ -29,9 +32,9 @@ INSTALLED_APPS = [
     'apps.leaderboard',
     'apps.achievements',
     'apps.notifications',
-]
-
-INSTALLED_APPS += ['rest_framework', 'rest_framework_simplejwt.token_blacklist']
+    'rest_framework',
+    'rest_framework_simplejwt',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
